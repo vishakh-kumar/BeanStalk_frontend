@@ -1,4 +1,4 @@
-import {useEffect, useState} from "react";
+import { useEffect, useState } from "react";
 import RoasterUpdate from "./RoasterUpdate";
 import axios from "axios";
 
@@ -11,15 +11,15 @@ export default function RoasterList() {
     }, [])
 
     const getRoasters = async () => {
-        let axiosConfig = {
-            headers: {
-                "Content-Type": "application/json;char=UTF-8",
-                "Access-Control-Allow-Origin": "*",
-                "withCredentials": "true"
-            },
-        };
+        // let axiosConfig = {
+        //     headers: {
+        //         "Content-Type": "application/json;char=UTF-8",
+        //         "Access-Control-Allow-Origin": "*",
+        //         "withCredentials": "true"
+        //     },
+        // };
         try {
-            axios.get('https://beanstalk-api.herokuapp.com/roasters', axiosConfig)
+            axios.get('https://beanstalk-api.herokuapp.com/roasters', ({ withCredentials: true })
                 .then(res => {
                     console.log(res)
                     setRoasterList(res.data.roaster)
