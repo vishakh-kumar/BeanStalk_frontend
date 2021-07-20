@@ -15,6 +15,7 @@ export default function RoasterList() {
             headers: {
                 "Content-Type": "application/json;char=UTF-8",
                 "Access-Control-Allow-Origin": "*",
+                "withCredentials": "true"
             },
         };
         try {

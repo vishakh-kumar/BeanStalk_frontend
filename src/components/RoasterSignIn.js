@@ -19,8 +19,6 @@ export default function RoasterSignIn(props) {
                 "Content-Type": "application/json;char=UTF-8",
                 "Access-Control-Allow-Origin": "*",
                 "withCredentials": "true"
-                
-                
             },
         };
         axios
