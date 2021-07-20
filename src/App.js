@@ -7,6 +7,7 @@ import SignIn from "./views/SignIn/SignIn";
 import RoasterSignUp from "./components/RoasterSignUp";
 import RoasterSignIn from "./components/RoasterSignIn";
 import RoasterList from "./components/RoasterList";
+import PhotoUpload from "./components/PhotoUpload";
 
 
 function App() {
@@ -24,7 +25,9 @@ function App() {
                 </Switch>
             </Router>
             <RoasterSignUp />
-            <RoasterSignIn />
+
+            <RoasterSignIn signIn={(roaster) => setSignedInRoaster(roaster)} />
+            <PhotoUpload />
             {signedInRoaster && <div>{signedInRoaster} test</div>}
             <RoasterList />
         </div>
