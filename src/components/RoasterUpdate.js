@@ -1,8 +1,8 @@
-import {useState} from "react";
+import { useState } from "react";
 import axios from "axios";
 
 
-export default function RoasterUpdate({roaster}) {
+export default function RoasterUpdate({ roaster }) {
     const [update, setUpdate] = useState({
         email: "",
     })
@@ -14,6 +14,7 @@ export default function RoasterUpdate({roaster}) {
             headers: {
                 "Content-Type": "application/json;char=UTF-8",
                 "Access-Control-Allow-Origin": "*",
+                "withCredentials": "true"
             },
         }
         try {
@@ -41,7 +42,7 @@ export default function RoasterUpdate({roaster}) {
 
     const handleUpdateChange = (event, name) => {
         console.log(event, name)
-        setUpdate({...update, [name]: event.target.value });
+        setUpdate({ ...update, [name]: event.target.value });
     }
 
     return (

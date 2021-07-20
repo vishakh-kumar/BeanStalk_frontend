@@ -1,4 +1,4 @@
-import {useEffect, useState} from "react";
+import { useEffect, useState } from "react";
 import RoasterUpdate from "./RoasterUpdate";
 import axios from "axios";
 
@@ -13,8 +13,9 @@ export default function RoasterList() {
     const getRoasters = async () => {
         let axiosConfig = {
             headers: {
-                "Content-Type": "application/json;char=UTF-8",
+                "Content-Type": "text/plain",
                 "Access-Control-Allow-Origin": "*",
+                "withCredentials": "true"
             },
         };
         try {
