@@ -22,10 +22,9 @@ const PhotoUpload = () => {
             },
             method: "POST",
             body: form,
-        }).then((res) => {
-            console.log(res.json());
-            setImageString(res.json().secure_url);
-        });
+        })
+            .then((res) => res.json())
+            .then((data) => setImageString(data.url));
     };
 
     return (
