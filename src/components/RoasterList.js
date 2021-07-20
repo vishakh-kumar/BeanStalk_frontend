@@ -11,21 +11,20 @@ export default function RoasterList() {
     }, [])
 
     const getRoasters = async () => {
-        // let axiosConfig = {
-        //     headers: {
-        //         "Content-Type": "application/json;char=UTF-8",
-        //         "Access-Control-Allow-Origin": "*",
-        //         "withCredentials": "true"
-        //     },
-        // };
+        let axiosConfig = {
+            headers: {
+                "Content-Type": "application/json;char=UTF-8",
+                "Access-Control-Allow-Origin": "https://beanstalk-api.herokuapp.com",
+                "withCredentials": "true"
+            },
+        };
         try {
-            axios.get('https://beanstalk-api.herokuapp.com/roasters', { withCredentials: true })
+            axios.get('https://beanstalk-api.herokuapp.com/roasters', axiosConfig)
                 .then(res => {
                     console.log(res)
                     setRoasterList(res.data.roaster)
                 })
-        }
-        catch (e) {
+        } catch (e) {
             console.log(e)
         }
     }
