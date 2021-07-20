@@ -13,7 +13,8 @@ export default function RoasterUpdate({ roaster }) {
         let axiosConfig = {
             headers: {
                 "Content-Type": "application/json;char=UTF-8",
-                "Access-Control-Allow-Origin": "origin, x-requested-with",
+                "Access-Control-Allow-Origin": "*",
+                "Access-Control-Request-Headers": "Content-Type, x-requested-with",
                 "withCredentials": "true"
             },
         }
