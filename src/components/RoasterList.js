@@ -13,10 +13,7 @@ export default function RoasterList() {
     const getRoasters = async () => {
         let axiosConfig = {
             headers: {
-                "Content-Type": "application/json;char=UTF-8",
-                "Access-Control-Allow-Origin": "*",
-                "Access-Control-Allow-Methods": "*",
-                "Access-Control-Request-Headers": "Content-Type, x-requested-with",
+
                 "withCredentials": "true"
             },
         };

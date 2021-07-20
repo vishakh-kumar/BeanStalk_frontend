@@ -16,9 +16,7 @@ export default function RoasterSignIn(props) {
         event.preventDefault();
         let axiosConfig = {
             headers: {
-                "Content-Type": "application/json;char=UTF-8",
-                "Access-Control-Allow-Origin": "*",
-                "Access-Control-Request-Headers": "Content-Type, x-requested-with",
+
                 "withCredentials": "true"
             },
         };
