@@ -17,7 +17,7 @@ export default function RoasterUpdate({roaster}) {
             },
         }
         try {
-            await axios.put(`http://localhost:3000/roasters/${roaster.id}`, update, axiosConfig)
+            await axios.put(`https://beanstalk-api.herokuapp.com/roasters/${roaster.id}`, update, axiosConfig)
                 .then(res => console.log(res))
         } catch (e) {
             console.log(e)
@@ -32,7 +32,7 @@ export default function RoasterUpdate({roaster}) {
             },
         };
         try {
-            await axios.delete(`http://localhost:3000/roasters/${roaster.id}`, axiosConfig)
+            await axios.delete(`https://beanstalk-api.herokuapp.com/roasters/${roaster.id}`, axiosConfig)
                 .then(res => console.log(res))
         } catch (e) {
             console.log(e)
