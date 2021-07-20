@@ -1,4 +1,4 @@
-import {useState} from "react";
+import { useState } from "react";
 import axios from "axios";
 
 export default function RoasterSignIn(props) {
@@ -17,7 +17,7 @@ export default function RoasterSignIn(props) {
         let axiosConfig = {
             headers: {
                 "Content-Type": "application/json;char=UTF-8",
-                "Access-Control-Allow-Origin": "https://beanstalk-api.herokuapp.com",
+                "Access-Control-Allow-Origin": "origin, x-requested-with",
                 "withCredentials": "true"
             },
         };
