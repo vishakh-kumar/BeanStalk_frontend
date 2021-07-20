@@ -19,12 +19,13 @@ export default function RoasterList() {
         //     },
         // };
         try {
-            axios.get('https://beanstalk-api.herokuapp.com/roasters', ({ withCredentials: true })
+            axios.get('https://beanstalk-api.herokuapp.com/roasters', { withCredentials: true })
                 .then(res => {
                     console.log(res)
                     setRoasterList(res.data.roaster)
                 })
-        } catch (e) {
+        }
+        catch (e) {
             console.log(e)
         }
     }
