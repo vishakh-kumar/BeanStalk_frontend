@@ -9,7 +9,7 @@ export default function RoasterList() {
     useEffect(() => {
         getRoasters();
     }, [])
-
+    // Need to fix the access control origin
     const getRoasters = async () => {
         let axiosConfig = {
             headers: {
