@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "engines": {
     "node": "14.x",
-    "npm" : "6.x"
+    "npm": "6.x"
   },
   "private": true,
   "dependencies": {
@@ -87,5 +87,8 @@
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/creativetimofficial/paper-kit-react/issues"
+  },
+  "optionalDependencies": {
+    "fsevents": "^2.3.2"
   }
 }
