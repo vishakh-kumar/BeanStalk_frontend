@@ -1,6 +1,10 @@
 {
   "name": "frontend",
   "version": "0.1.0",
+  "engines": {
+    "node": "14.x",
+    "npm": "6.x"
+  },
   "private": true,
   "dependencies": {
     "@cloudinary/base": "^1.0.0-beta.3",
@@ -83,5 +87,8 @@
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/creativetimofficial/paper-kit-react/issues"
+  },
+  "optionalDependencies": {
+    "fsevents": "^2.3.2"
   }
 }
