@@ -1,5 +1,6 @@
 import React from "react";
 import "./Homepage.css";
+import {useHistory} from "react-router";
 
 // reactstrap components
 import { Button, Container, Row, Col } from "reactstrap";
@@ -7,6 +8,7 @@ import { Button, Container, Row, Col } from "reactstrap";
 // core components
 
 function HomepageMain() {
+  let history = useHistory();
   let pageHeader = React.createRef();
 
   React.useEffect(() => {
@@ -50,8 +52,10 @@ function HomepageMain() {
                     className="btn-round btn-move-right mr-1"
                     block
                     color="danger"
-                    href="https://www.youtube.com/watch?v=dQw4w9WgXcQ?ref=creativetim"
-                    target="_blank"
+                    onClick={(e) => {
+                      e.preventDefault();
+                      history.push('/signin')
+                    }}
                   >
                     Get Started <i className="nc-icon nc-minimal-right" />
                   </Button>

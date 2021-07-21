@@ -105,7 +105,7 @@ function MultiDropdownNavbar() {
               <NavItem>
                 <Button
                     className="btn-round btn-magnify"
-                    color="primary"
+                    color="danger"
                     href="/signin"
                 >
                   <i className="nc-icon nc-circle-10" /> Sign In

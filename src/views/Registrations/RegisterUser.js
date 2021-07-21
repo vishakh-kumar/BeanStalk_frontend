@@ -56,14 +56,14 @@ function RegisterUser() {
           style={{
             backgroundImage:
               "url(" +
-              require("assets/img/roaster.jpg").default +
+              require("assets/img/latte.jpeg").default +
               ")",
           }}
         >
           <div className="filter" />
           <Container>
             <Row>
-              <Col className="ml-auto mr-auto" lg="4" md="6" sm="8" xs="12">
+              <Col className="ml-auto mr-auto" lg="6" md="6" sm="10" xs="12">
                 <Card className="card-register">
                   <CardTitle className="text-center" tag="h3">
                     <div>Sign up</div>

@@ -80,14 +80,14 @@ function SignIn(props) {
           style={{
             backgroundImage:
               "url(" +
-              require("assets/img/coffeephotography16.jpg").default +
+              require("assets/img/Espresso.jpg").default +
               ")",
           }}
         >
           <div className="filter" />
           <Container>
             <Row>
-              <Col className="ml-auto mr-auto" lg="4" md="6" sm="8" xs="12">
+              <Col className="ml-auto mr-auto" lg="6" md="6" sm="8" xs="12">
                 <Card className="card-register">
                   <CardTitle className="text-center" tag="h3">
                     <div>Sign in</div>

@@ -21,7 +21,7 @@ import axios from "axios";
 function RegisterRoaster() {
   const history = useHistory();
   const [roasterForm, setRoasterForm] = useState({
-    name: "onChange=roasterFormChang",
+    name: "",
     email: "",
     password: "",
     img_url: "",
@@ -50,12 +50,12 @@ function RegisterRoaster() {
     let axiosConfig = {
       headers: {
         "Content-Type": "application/json;char=UTF-8",
-        "Access-Control-Allow-Origin": "*",
+        "Access-Control-Allow-Origin": "https://beanstalk-api.herokuapp.com",
       },
     };
     axios
         .post(
-            "http://localhost:3001/registrations",
+            "https://beanstalk-api.herokuapp.com/registrations",
             {
               roaster: {
                 email: roasterForm.email || undefined,
