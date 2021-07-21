@@ -1,4 +1,4 @@
-import React, {useEffect} from "react";
+import React, { useEffect } from "react";
 import { useState } from "react";
 import axios from "axios";
 
@@ -37,7 +37,8 @@ const RoasterSignUp = function () {
         let axiosConfig = {
             headers: {
                 "Content-Type": "application/json;char=UTF-8",
-                "Access-Control-Allow-Origin": "*",
+                "Access-Control-Allow-Origin": "https://beanstalk-api.herokuapp.com",
+                "withCredentials": "true"
             },
         };
         axios
@@ -69,8 +70,8 @@ const RoasterSignUp = function () {
         let axiosConfig = {
             headers: {
                 "Content-Type": "application/json;char=UTF-8",
-                "Access-Control-Allow-Origin": "*",
-                "withCredentials": true
+                "Access-Control-Allow-Origin": "https://beanstalk-api.herokuapp.com",
+                "withCredentials": "true"
             },
         };
         axios

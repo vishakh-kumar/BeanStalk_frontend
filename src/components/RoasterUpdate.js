@@ -31,7 +31,8 @@ export default function RoasterUpdate({ roaster }) {
         let axiosConfig = {
             headers: {
                 "Content-Type": "application/json;char=UTF-8",
-                "Access-Control-Allow-Origin": "*",
+                "Access-Control-Allow-Origin": "https://beanstalk-api.herokuapp.com",
+                "withCredentials": "true"
             },
         };
         try {
@@ -64,7 +65,7 @@ export default function RoasterUpdate({ roaster }) {
 
             </form>
 
-            <PhotoUpload urlString={(url) => setUpdate({...update, ["img_url"]: url })} />
+            <PhotoUpload urlString={(url) => setUpdate({ ...update, ["img_url"]: url })} />
             {update.image !== "" && <img src={update.image} />}
             <button onClick={deleteRoaster}>Delete</button>
         </div>

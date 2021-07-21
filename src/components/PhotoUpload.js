@@ -1,7 +1,7 @@
 import React from "react";
 import { useState } from "react";
 
-const PhotoUpload = ({urlString}) => {
+const PhotoUpload = ({ urlString }) => {
     const [image, setImage] = useState(null);
     const onChange = (e) => {
         console.log(e);
@@ -17,7 +17,7 @@ const PhotoUpload = ({urlString}) => {
         await fetch(`https://beanstalk-api.herokuapp.com/photos`, {
             header: {
                 "Content-Type": "application/json;char=UTF-8",
-                "Access-Control-Allow-Origin": "*",
+                "Access-Control-Allow-Origin": "https://beanstalk-api.herokuapp.com",
             },
             method: "POST",
             body: form,
