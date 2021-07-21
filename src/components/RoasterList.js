@@ -18,7 +18,7 @@ export default function RoasterList() {
             },
         };
         try {
-            axios.get('https://beanstalk-api.herokuapp.com/roasters', axiosConfig)
+            axios.get('http://localhost:3001/roasters', axiosConfig)
                 .then(res => {
                     console.log(res)
                     setRoasterList(res.data.roaster)

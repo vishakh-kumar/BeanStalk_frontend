@@ -38,113 +38,57 @@ function LandingPage() {
           <Container>
             <Row>
               <Col className="ml-auto mr-auto" md="8">
-                <h2 className="title">Beanstalk because </h2>
+                <h2 className="title">Why use Beanstalk?</h2>
                 <h5>
-                  This is the paragraph where you can write more details about
-                  your product. Keep you user engaged by providing meaningful
-                  information. Remember that by this time, the user is curious,
-                  otherwise he wouldn't scroll to get here. Add a button if you
-                  want the user to see more.
+                  Because it's not all "the same." It does matter how it's made. You can taste the difference. Foamed
+                  milk is a gift from the gods. Your first ever was magical. And there's a romance to it that
+                  will never go away.
                 </h5>
                 <br />
-                <Button
-                  className="btn-fill btn-round"
-                  color="danger"
-                  href="#pablo"
-                  onClick={(e) => e.preventDefault()}
-                >
-                  See Details
-                </Button>
               </Col>
             </Row>
             <br />
             <br />
             <Row>
-              <Col md="3">
+              <Col md="4">
                 <div className="info">
                   <div className="icon icon-danger">
-                    <i className="nc-icon nc-palette" />
+                    <i className="nc-icon nc-zoom-split" />
                   </div>
                   <div className="description">
-                    <h4 className="info-title">Beautiful Gallery</h4>
-                    <p className="description">
-                      Spend your time generating new ideas. You don't have to
-                      think of implementing.
+                    <h4 className="info-title">Discover</h4>
+                    <p>
+                      Use our search tool to find roasters with new
+                      and exciting beans to try.
                     </p>
-                    <Button
-                      className="btn-link"
-                      color="danger"
-                      href="#pablo"
-                      onClick={(e) => e.preventDefault()}
-                    >
-                      See more
-                    </Button>
                   </div>
                 </div>
               </Col>
-              <Col md="3">
+              <Col md="4">
                 <div className="info">
                   <div className="icon icon-danger">
-                    <i className="nc-icon nc-bulb-63" />
+                    <i className="nc-icon nc-book-bookmark" />
                   </div>
                   <div className="description">
-                    <h4 className="info-title">New Ideas</h4>
+                    <h4 className="info-title">Remember</h4>
                     <p>
-                      Larger, yet dramatically thinner. More powerful, but
-                      remarkably power efficient.
+                      Create an account to save your discoveries so you can
+                      buy your beans fresh at a later date.
                     </p>
-                    <Button
-                      className="btn-link"
-                      color="danger"
-                      href="#pablo"
-                      onClick={(e) => e.preventDefault()}
-                    >
-                      See more
-                    </Button>
                   </div>
                 </div>
               </Col>
-              <Col md="3">
+              <Col md="4">
                 <div className="info">
                   <div className="icon icon-danger">
-                    <i className="nc-icon nc-chart-bar-32" />
+                    <i className="nc-icon nc-chat-33" />
                   </div>
                   <div className="description">
-                    <h4 className="info-title">Statistics</h4>
+                    <h4 className="info-title">Reflect</h4>
                     <p>
-                      Choose from a veriety of many colors resembling sugar
-                      paper pastels.
+                      Share your feedback so you and like-minded bean-seekers can
+                      discover good roasts in the future.
                     </p>
-                    <Button
-                      className="btn-link"
-                      color="danger"
-                      href="#pablo"
-                      onClick={(e) => e.preventDefault()}
-                    >
-                      See more
-                    </Button>
-                  </div>
-                </div>
-              </Col>
-              <Col md="3">
-                <div className="info">
-                  <div className="icon icon-danger">
-                    <i className="nc-icon nc-sun-fog-29" />
-                  </div>
-                  <div className="description">
-                    <h4 className="info-title">Delightful design</h4>
-                    <p>
-                      Find unique and handmade delightful designs related items
-                      directly from our sellers.
-                    </p>
-                    <Button
-                      className="btn-link"
-                      color="danger"
-                      href="#pablo"
-                      onClick={(e) => e.preventDefault()}
-                    >
-                      See more
-                    </Button>
                   </div>
                 </div>
               </Col>
