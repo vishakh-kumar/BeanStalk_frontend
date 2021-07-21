@@ -1,11 +1,13 @@
-import {useState} from "react";
+import { useState } from "react";
 import axios from "axios";
+import PhotoUpload from "./PhotoUpload";
 
 
-export default function RoasterUpdate({roaster}) {
+export default function RoasterUpdate({ roaster }) {
     const [update, setUpdate] = useState({
         email: "",
-    })
+        img_url: ""
+    });
 
     console.log("is this the real life", roaster)
 
@@ -13,7 +15,8 @@ export default function RoasterUpdate({roaster}) {
         let axiosConfig = {
             headers: {
                 "Content-Type": "application/json;char=UTF-8",
-                "Access-Control-Allow-Origin": "*",
+                "Access-Control-Allow-Origin": "https://beanstalk-api.herokuapp.com",
+                "withCredentials": "true"
             },
         }
         try {
@@ -28,7 +31,8 @@ export default function RoasterUpdate({roaster}) {
         let axiosConfig = {
             headers: {
                 "Content-Type": "application/json;char=UTF-8",
-                "Access-Control-Allow-Origin": "*",
+                "Access-Control-Allow-Origin": "https://beanstalk-api.herokuapp.com",
+                "withCredentials": "true"
             },
         };
         try {
@@ -41,12 +45,13 @@ export default function RoasterUpdate({roaster}) {
 
     const handleUpdateChange = (event, name) => {
         console.log(event, name)
-        setUpdate({...update, [name]: event.target.value });
+        setUpdate({ ...update, [name]: event.target.value });
     }
 
     return (
         <div>
             currently displaying roaster {roaster.email}
+            <img src={roaster.img_url} alt="Roaster Image" />
             <form onSubmit={handleUpdate}>
                 <input
                     type="email"
@@ -59,6 +64,9 @@ export default function RoasterUpdate({roaster}) {
 
 
             </form>
+
+            <PhotoUpload urlString={(url) => setUpdate({ ...update, ["img_url"]: url })} />
+            {update.image !== "" && <img src={update.image} />}
             <button onClick={deleteRoaster}>Delete</button>
         </div>
     )

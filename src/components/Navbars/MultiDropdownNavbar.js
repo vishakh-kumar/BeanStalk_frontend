@@ -1,4 +1,5 @@
 import React from "react";
+import {useHistory} from "react-router";
 import { Link } from "react-router-dom";
 // nodejs library that concatenates strings
 import classnames from "classnames";
@@ -23,6 +24,9 @@ function MultiDropdownNavbar() {
   const [navbarColor, setNavbarColor] = React.useState("navbar-transparent");
   const [bodyClick, setBodyClick] = React.useState(false);
   const [collapseOpen, setCollapseOpen] = React.useState(false);
+  const history = useHistory();
+
+
   React.useEffect(() => {
     let headroom = new Headroom(document.getElementById("navbar-main"));
     // initialise
@@ -65,7 +69,7 @@ function MultiDropdownNavbar() {
       >
         <Container>
           <div className="navbar-translate">
-            <NavbarBrand id="navbar-brand" to="/" tag={Link}>
+            <NavbarBrand id="navbar-brand" tag={Link} onClick={() => history.push('/')}>
               Beanstalk
             </NavbarBrand>
             <button
@@ -90,7 +94,7 @@ function MultiDropdownNavbar() {
                   Sign Up
                 </DropdownToggle>
                 <DropdownMenu className="dropdown-danger" right>
-                  <DropdownItem to="/index" tag={Link}>
+                  <DropdownItem to="/register/roaster" tag={Link}>
                     For Roasters
                   </DropdownItem>
                   <DropdownItem to="/presentation" tag={Link}>
@@ -101,7 +105,7 @@ function MultiDropdownNavbar() {
               <NavItem>
                 <Button
                     className="btn-round btn-magnify"
-                    color="primary"
+                    color="danger"
                     href="/signin"
                 >
                   <i className="nc-icon nc-circle-10" /> Sign In

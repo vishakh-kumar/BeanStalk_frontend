@@ -1,5 +1,4 @@
 import React from "react";
-import axios from "axios";
 import { useState } from "react";
 import { useHistory } from "react-router";
 
@@ -16,10 +15,19 @@ import {
 } from "reactstrap";
 
 // core components
-import MultiDropdownNavbar from "components/Navbars/MultiDropdownNavbar.js";
+import MultiDropdownNavbar from "../../components/Navbars/MultiDropdownNavbar";
+import axios from "axios";
 
-function SignIn(props) {
+function RegisterRoaster() {
   const history = useHistory();
+  const [roasterForm, setRoasterForm] = useState({
+    name: "",
+    email: "",
+    password: "",
+    img_url: "",
+    password_confirmation: "",
+    registrationErrors: "",
+  })
 
   document.documentElement.classList.remove("nav-open");
   React.useEffect(() => {
@@ -33,17 +41,12 @@ function SignIn(props) {
     };
   });
 
-  const [signIn, setSignIn] = useState({
-    email: "",
-    password: "",
-  });
-
-  const handleChange = (name) => (event) => {
-    console.log()
-    setSignIn({ ...signIn, [name]: event.target.value });
+  const roasterFormChange = (event) => {
+    setRoasterForm({ ...roasterForm, [event.target.name]: event.target.value })
   };
 
-  const handleSignIn = function () {
+  const registerRoaster = function (event) {
+    event.preventDefault();
     let axiosConfig = {
       headers: {
         "Content-Type": "application/json;char=UTF-8",
@@ -53,18 +56,19 @@ function SignIn(props) {
     };
     axios
       .post(
-        "https://beanstalk-api.herokuapp.com/sessions",
+        "https://beanstalk-api.herokuapp.com/registrations",
         {
           roaster: {
-            email: signIn.email,
-            password: signIn.password,
+            email: roasterForm.email || undefined,
+            password: roasterForm.password || undefined,
+            password_confirmation:
+              roasterForm.password_confirmation || undefined,
           },
         },
         axiosConfig
       )
       .then((response) => {
         console.log("registration res", response);
-        props.signIn(response.data.roaster.email);
       })
       .catch((error) => {
         console.log("registration error", error);
@@ -80,26 +84,26 @@ function SignIn(props) {
           style={{
             backgroundImage:
               "url(" +
-              require("assets/img/Espresso.jpg").default +
+              require("assets/img/roaster.jpg").default +
               ")",
           }}
         >
           <div className="filter" />
           <Container>
             <Row>
-              <Col className="ml-auto mr-auto" lg="6" md="6" sm="8" xs="12">
+              <Col className="ml-auto mr-auto" lg="4" md="6" sm="8" xs="12">
                 <Card className="card-register">
                   <CardTitle className="text-center" tag="h3">
-                    <div>Sign in</div>
+                    <div>Sign up as a roaster</div>
                   </CardTitle>
                   <div className="login">
                     <p>
-                      New around here?{" "}
+                      Want to discover, rate, and follow roasters?{" "}
                       <a href="" onClick={(e) => {
                         e.preventDefault()
                         history.push('/register/user')
                       }}>
-                        Create an account
+                        Create a user account
                       </a>
                       .
                     </p>
@@ -109,37 +113,25 @@ function SignIn(props) {
                     <span>Info</span>
                     <div className="line r" />
                   </div>
-                  <Form className="register-form">
-                    <Input
-                      type="email"
-                      name="email"
-                      placeholder="Email Address"
-                      value={signIn.email}
-                      onChange={handleChange("email")}
-                    />
-                    <Input
-                      type="password"
-                      name="password"
-                      placeholder="Password"
-                      value={signIn.password}
-                      onChange={handleChange("password")}
-                    />
-                    <Button
-                      block className="btn-round"
-                      color="default"
-                      onClick={() => handleSignIn()}
-                    >
-                      Sign In
+                  <Form className="register-form" onSubmit={registerRoaster}>
+                    <Input name="name" placeholder="Business Name (dba)" type="text" onChange={roasterFormChange} />
+                    <Input name="email" placeholder="Email" type="text" onChange={roasterFormChange} />
+                    <Input name="password" placeholder="Password" type="password" onChange={roasterFormChange} />
+                    <Input name="password_confirmation" placeholder="Confirm Password" type="password" onChange={roasterFormChange} />
+                    <Button block className="btn-round" color="default">
+                      Create roaster account
                     </Button>
                   </Form>
                   <div className="login">
                     <p>
+                      Already have an account?{" "}
                       <a href="" onClick={(e) => {
                         e.preventDefault()
-                        history.push('/register/user')
+                        history.push('/signin')
                       }}>
-                        Forgot your password?
+                        Sign in
                       </a>
+                      .
                     </p>
                   </div>
                 </Card>
@@ -158,4 +150,4 @@ function SignIn(props) {
   );
 }
 
-export default SignIn;
+export default RegisterRoaster;

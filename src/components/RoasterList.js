@@ -1,4 +1,4 @@
-import {useEffect, useState} from "react";
+import { useEffect, useState } from "react";
 import RoasterUpdate from "./RoasterUpdate";
 import axios from "axios";
 
@@ -9,12 +9,13 @@ export default function RoasterList() {
     useEffect(() => {
         getRoasters();
     }, [])
-
+    // Need to fix the access control origin
     const getRoasters = async () => {
         let axiosConfig = {
             headers: {
                 "Content-Type": "application/json;char=UTF-8",
-                "Access-Control-Allow-Origin": "*",
+                "Access-Control-Allow-Origin": "https://beanstalk-api.herokuapp.com",
+                "withCredentials": "true"
             },
         };
         try {
