@@ -1,5 +1,4 @@
 import React from "react";
-import axios from "axios";
 import {useState} from "react";
 import {useHistory} from "react-router";
 
@@ -16,10 +15,16 @@ import {
 } from "reactstrap";
 
 // core components
-import MultiDropdownNavbar from "components/Navbars/MultiDropdownNavbar.js";
+import MultiDropdownNavbar from "../../components/Navbars/MultiDropdownNavbar";
 
-function SignIn(props) {
+function RegisterUser() {
   const history = useHistory();
+  const [userInfo, setUserInfo] = useState({
+    name: "",
+    email: "",
+    password: "",
+    confirm: "",
+  })
 
   document.documentElement.classList.remove("nav-open");
   React.useEffect(() => {
@@ -31,45 +36,16 @@ function SignIn(props) {
       document.body.classList.remove("register-page");
       document.body.classList.remove("full-screen");
     };
-  });
+  }, []);
 
-  const [signIn, setSignIn] = useState({
-    email: "",
-    password: "",
-  });
+  const userFormChange = (e, name) => {
+    setUserInfo({...userInfo, [name]: e.target.value})
+  }
 
-  const handleChange = (name) => (event) => {
-    console.log()
-    setSignIn({ ...signIn, [name]: event.target.value });
-  };
-
-  const handleSignIn = function () {
-    let axiosConfig = {
-      headers: {
-        "Content-Type": "application/json;char=UTF-8",
-        "Access-Control-Allow-Origin": "*",
-        "withCredentials": true
-      },
-    };
-    axios
-        .post(
-            "https://beanstalk-api.herokuapp.com/sessions",
-            {
-              roaster: {
-                email: signIn.email,
-                password: signIn.password,
-              },
-            },
-            axiosConfig
-        )
-        .then((response) => {
-          console.log("registration res", response);
-          props.signIn(response.data.roaster.email);
-        })
-        .catch((error) => {
-          console.log("registration error", error);
-        });
-  };
+  const registerUser = (e) => {
+    e.preventDefault();
+    console.log(userInfo);
+  }
 
   return (
     <>
@@ -80,7 +56,7 @@ function SignIn(props) {
           style={{
             backgroundImage:
               "url(" +
-              require("assets/img/coffeephotography16.jpg").default +
+              require("assets/img/roaster.jpg").default +
               ")",
           }}
         >
@@ -90,16 +66,16 @@ function SignIn(props) {
               <Col className="ml-auto mr-auto" lg="4" md="6" sm="8" xs="12">
                 <Card className="card-register">
                   <CardTitle className="text-center" tag="h3">
-                    <div>Sign in</div>
+                    <div>Sign up</div>
                   </CardTitle>
                   <div className="login">
                     <p>
-                      New around here?{" "}
+                      Are you a roaster?{" "}
                       <a href="" onClick={(e) => {
                         e.preventDefault()
-                        history.push('/register/user')
+                        history.push('/register/roaster')
                       }}>
-                        Create an account
+                        Create a business account
                       </a>
                       .
                     </p>
@@ -109,37 +85,25 @@ function SignIn(props) {
                     <span>Info</span>
                     <div className="line r" />
                   </div>
-                  <Form className="register-form">
-                    <Input
-                        type="email"
-                        name="email"
-                        placeholder="Email Address"
-                        value={signIn.email}
-                        onChange={handleChange("email")}
-                    />
-                    <Input
-                        type="password"
-                        name="password"
-                        placeholder="Password"
-                        value={signIn.password}
-                        onChange={handleChange("password")}
-                    />
-                    <Button
-                        block className="btn-round"
-                        color="default"
-                        onClick={() => handleSignIn()}
-                    >
-                      Sign In
+                  <Form className="register-form" onSubmit={registerUser}>
+                    <Input placeholder="Name" type="text" onChange={(e) => userFormChange(e, "name")} />
+                    <Input placeholder="Email" type="text" onChange={(e) => userFormChange(e, "email")} />
+                    <Input placeholder="Password" type="password" onChange={(e) => userFormChange(e, "password")} />
+                    <Input placeholder="Confirm Password" type="password" onChange={(e) => userFormChange(e, "confirm")} />
+                    <Button block className="btn-round" color="default">
+                      Create account
                     </Button>
                   </Form>
                   <div className="login">
                     <p>
+                      Already have an account?{" "}
                       <a href="" onClick={(e) => {
                         e.preventDefault()
-                        history.push('/register/user')
+                        history.push('/signin')
                       }}>
-                        Forgot your password?
+                        Sign in
                       </a>
+                      .
                     </p>
                   </div>
                 </Card>
@@ -158,4 +122,4 @@ function SignIn(props) {
   );
 }
 
-export default SignIn;
+export default RegisterUser;

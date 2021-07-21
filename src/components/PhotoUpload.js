@@ -1,9 +1,8 @@
 import React from "react";
 import { useState } from "react";
 
-const PhotoUpload = () => {
+const PhotoUpload = ({urlString}) => {
     const [image, setImage] = useState(null);
-    const [imageString, setImageString] = useState(null);
     const onChange = (e) => {
         console.log(e);
         e.persist();
@@ -15,7 +14,7 @@ const PhotoUpload = () => {
         const form = new FormData();
         form.append("image", image);
 
-        await fetch(`http://localhost:3000/photos`, {
+        await fetch(`http://localhost:3001/photos`, {
             header: {
                 "Content-Type": "application/json;char=UTF-8",
                 "Access-Control-Allow-Origin": "*",
@@ -24,7 +23,7 @@ const PhotoUpload = () => {
             body: form,
         })
             .then((res) => res.json())
-            .then((data) => setImageString(data.url));
+            .then((data) => urlString(data.url));
     };
 
     return (
@@ -36,7 +35,6 @@ const PhotoUpload = () => {
                 <br />
                 <input type="submit" />
             </form>
-            {imageString && <img src={imageString}></img>}
         </div>
     );
 };

@@ -7,12 +7,14 @@ import SignIn from "./views/SignIn/SignIn";
 import RoasterSignUp from "./components/RoasterSignUp";
 import RoasterSignIn from "./components/RoasterSignIn";
 import RoasterList from "./components/RoasterList";
-import PhotoUpload from "./components/PhotoUpload";
+import RegisterRoaster from "./views/Registrations/RegisterRoaster";
+import RegisterUser from "./views/Registrations/RegisterUser";
 
 
 function App() {
     const [signedInRoaster, setSignedInRoaster] = useState(null);
     var hist = createBrowserHistory();
+
 
     return (
         <div className="App">
@@ -22,13 +24,16 @@ function App() {
                     <Route path="/signin" exact>
                         <SignIn signIn={(roaster) => setSignedInRoaster(roaster)} />
                     </Route>
+                    <Route path="/register/roaster" exact component={RegisterRoaster} />
+                    <Route path="/register/user" exact component={RegisterUser} />
                 </Switch>
             </Router>
             <RoasterSignUp />
-
             <RoasterSignIn signIn={(roaster) => setSignedInRoaster(roaster)} />
-            <PhotoUpload />
-            {signedInRoaster && <div>{signedInRoaster} test</div>}
+            {signedInRoaster &&
+            <div>
+                {signedInRoaster} test
+            </div>}
             <RoasterList />
         </div>
     );

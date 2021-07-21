@@ -1,4 +1,5 @@
 import React from "react";
+import "./Homepage.css";
 
 // reactstrap components
 import { Button, Container, Row, Col } from "reactstrap";
@@ -38,7 +39,7 @@ function HomepageMain() {
         <div className="content-center">
           <Container>
             <div className="title-brand">
-              <h1 className="presentation-title">Life is but a bean</h1>
+              <h1 className="main-title">Life is but a bean</h1>
               <h3 className="description">
                 Discover and review unique coffee roasters
               </h3>
