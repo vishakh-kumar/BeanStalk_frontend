@@ -1,17 +1,42 @@
 import React from "react";
-import { AdvancedImage } from "@cloudinary/react";
-import { Cloudinary } from "@cloudinary/base";
+import { useState } from "react";
 
-const PhotoUpload = () => {
-    const CLOUDINARY_URL = `https://api.cloudinary.com/v1_1/dz4ioqyl1/image/upload`;
-    const cld = new Cloudinary({
-        cloud: {
-            cloudName: "demo",
-        },
-    });
-    const myImage = cld.image("sample");
+const PhotoUpload = ({urlString}) => {
+    const [image, setImage] = useState(null);
+    const onChange = (e) => {
+        console.log(e);
+        e.persist();
+        setImage(e.target.files[0]);
+    };
 
-    return <div></div>;
+    const onSubmit = async (e) => {
+        e.preventDefault();
+        const form = new FormData();
+        form.append("image", image);
+
+        await fetch(`http://localhost:3001/photos`, {
+            header: {
+                "Content-Type": "application/json;char=UTF-8",
+                "Access-Control-Allow-Origin": "*",
+            },
+            method: "POST",
+            body: form,
+        })
+            .then((res) => res.json())
+            .then((data) => urlString(data.url));
+    };
+
+    return (
+        <div className="form">
+            <h1>Upload Image</h1>
+            <form onSubmit={onSubmit}>
+                <label>Image Upload</label>
+                <input type="file" name="image" onChange={onChange} />
+                <br />
+                <input type="submit" />
+            </form>
+        </div>
+    );
 };
 
 export default PhotoUpload;
