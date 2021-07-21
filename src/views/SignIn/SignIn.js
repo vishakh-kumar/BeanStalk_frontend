@@ -1,7 +1,7 @@
 import React from "react";
 import axios from "axios";
-import {useState} from "react";
-import {useHistory} from "react-router";
+import { useState } from "react";
+import { useHistory } from "react-router";
 
 // reactstrap components
 import {
@@ -48,27 +48,27 @@ function SignIn(props) {
       headers: {
         "Content-Type": "application/json;char=UTF-8",
         "Access-Control-Allow-Origin": "*",
-        "withCredentials": true
+        "withCredentials": "true"
       },
     };
     axios
-        .post(
-            "https://beanstalk-api.herokuapp.com/sessions",
-            {
-              roaster: {
-                email: signIn.email,
-                password: signIn.password,
-              },
-            },
-            axiosConfig
-        )
-        .then((response) => {
-          console.log("registration res", response);
-          props.signIn(response.data.roaster.email);
-        })
-        .catch((error) => {
-          console.log("registration error", error);
-        });
+      .post(
+        "https://beanstalk-api.herokuapp.com/sessions",
+        {
+          roaster: {
+            email: signIn.email,
+            password: signIn.password,
+          },
+        },
+        axiosConfig
+      )
+      .then((response) => {
+        console.log("registration res", response);
+        props.signIn(response.data.roaster.email);
+      })
+      .catch((error) => {
+        console.log("registration error", error);
+      });
   };
 
   return (
@@ -111,23 +111,23 @@ function SignIn(props) {
                   </div>
                   <Form className="register-form">
                     <Input
-                        type="email"
-                        name="email"
-                        placeholder="Email Address"
-                        value={signIn.email}
-                        onChange={handleChange("email")}
+                      type="email"
+                      name="email"
+                      placeholder="Email Address"
+                      value={signIn.email}
+                      onChange={handleChange("email")}
                     />
                     <Input
-                        type="password"
-                        name="password"
-                        placeholder="Password"
-                        value={signIn.password}
-                        onChange={handleChange("password")}
+                      type="password"
+                      name="password"
+                      placeholder="Password"
+                      value={signIn.password}
+                      onChange={handleChange("password")}
                     />
                     <Button
-                        block className="btn-round"
-                        color="default"
-                        onClick={() => handleSignIn()}
+                      block className="btn-round"
+                      color="default"
+                      onClick={() => handleSignIn()}
                     >
                       Sign In
                     </Button>

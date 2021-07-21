@@ -51,6 +51,7 @@ function RegisterRoaster() {
       headers: {
         "Content-Type": "application/json;char=UTF-8",
         "Access-Control-Allow-Origin": "https://beanstalk-api.herokuapp.com",
+        "withCredentials": "true"
       },
     };
     axios
