@@ -17,7 +17,11 @@ export default function RoasterSignIn(props) {
         let axiosConfig = {
             headers: {
                 "Content-Type": "application/json;char=UTF-8",
+<<<<<<< HEAD
                 "Access-Control-Allow-Origin": "*",
+=======
+                "Access-Control-Allow-Origin": "https://beanstalk-api.herokuapp.com",
+>>>>>>> master
                 "withCredentials": "true"
             },
         };

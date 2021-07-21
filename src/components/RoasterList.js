@@ -13,8 +13,13 @@ export default function RoasterList() {
     const getRoasters = async () => {
         let axiosConfig = {
             headers: {
+<<<<<<< HEAD
                 "Content-Type": "text/plain",
                 "Access-Control-Allow-Origin": "*",
+=======
+                "Content-Type": "application/json;char=UTF-8",
+                "Access-Control-Allow-Origin": "https://beanstalk-api.herokuapp.com",
+>>>>>>> master
                 "withCredentials": "true"
             },
         };
