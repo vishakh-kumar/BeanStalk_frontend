@@ -13,7 +13,7 @@ export default function RoasterUpdate({ roaster }) {
         let axiosConfig = {
             headers: {
                 "Content-Type": "application/json;char=UTF-8",
-                "Access-Control-Allow-Origin": "https://beanstalk-app.herokuapp.com",
+                "Access-Control-Allow-Origin": "https://beanstalk-api.herokuapp.com",
                 "withCredentials": "true"
             },
         }
