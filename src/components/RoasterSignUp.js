@@ -20,7 +20,7 @@ const RoasterSignUp = function () {
 
     const checkLoginStatus = function () {
         axios
-            .get("https://beanstalk-api.herokuapp.com/logged_in", { withCredentials: true })
+            .get("http://localhost:3001/logged_in", { withCredentials: true })
             .then(response => {
                 console.log(response, response.data.logged_in)
                 if (response.data.logged_in) {
@@ -42,7 +42,7 @@ const RoasterSignUp = function () {
         };
         axios
             .post(
-                "https://beanstalk-api.herokuapp.com/registrations",
+                "http://localhost:3001/registrations",
                 {
                     roaster: {
                         email: form.email || undefined,

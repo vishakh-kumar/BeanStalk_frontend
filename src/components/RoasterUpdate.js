@@ -1,11 +1,13 @@
 import { useState } from "react";
 import axios from "axios";
+import PhotoUpload from "./PhotoUpload";
 
 
 export default function RoasterUpdate({ roaster }) {
     const [update, setUpdate] = useState({
         email: "",
-    })
+        img_url: ""
+    });
 
     console.log("is this the real life", roaster)
 
@@ -18,7 +20,7 @@ export default function RoasterUpdate({ roaster }) {
             },
         }
         try {
-            await axios.put(`https://beanstalk-api.herokuapp.com/roasters/${roaster.id}`, update, axiosConfig)
+            await axios.put(`http://localhost:3001/roasters/${roaster.id}`, update, axiosConfig)
                 .then(res => console.log(res))
         } catch (e) {
             console.log(e)
@@ -48,6 +50,7 @@ export default function RoasterUpdate({ roaster }) {
     return (
         <div>
             currently displaying roaster {roaster.email}
+            <img src={roaster.img_url} alt="Roaster Image" />
             <form onSubmit={handleUpdate}>
                 <input
                     type="email"
@@ -60,6 +63,9 @@ export default function RoasterUpdate({ roaster }) {
 
 
             </form>
+
+            <PhotoUpload urlString={(url) => setUpdate({...update, ["img_url"]: url })} />
+            {update.image !== "" && <img src={update.image} />}
             <button onClick={deleteRoaster}>Delete</button>
         </div>
     )
