@@ -1,6 +1,6 @@
 import React from "react";
-import {useState} from "react";
-import {useHistory} from "react-router";
+import { useState } from "react";
+import { useHistory } from "react-router";
 
 // reactstrap components
 import {
@@ -42,7 +42,7 @@ function RegisterRoaster() {
   });
 
   const roasterFormChange = (event) => {
-    setRoasterForm({...roasterForm, [event.target.name]: event.target.value})
+    setRoasterForm({ ...roasterForm, [event.target.name]: event.target.value })
   };
 
   const registerRoaster = function (event) {
@@ -54,24 +54,24 @@ function RegisterRoaster() {
       },
     };
     axios
-        .post(
-            "https://beanstalk-api.herokuapp.com/registrations",
-            {
-              roaster: {
-                email: roasterForm.email || undefined,
-                password: roasterForm.password || undefined,
-                password_confirmation:
-                    roasterForm.password_confirmation || undefined,
-              },
-            },
-            axiosConfig
-        )
-        .then((response) => {
-          console.log("registration res", response);
-        })
-        .catch((error) => {
-          console.log("registration error", error);
-        });
+      .post(
+        "https://beanstalk-api.herokuapp.com/registrations",
+        {
+          roaster: {
+            email: roasterForm.email || undefined,
+            password: roasterForm.password || undefined,
+            password_confirmation:
+              roasterForm.password_confirmation || undefined,
+          },
+        },
+        axiosConfig
+      )
+      .then((response) => {
+        console.log("registration res", response);
+      })
+      .catch((error) => {
+        console.log("registration error", error);
+      });
   };
 
   return (
@@ -113,10 +113,10 @@ function RegisterRoaster() {
                     <div className="line r" />
                   </div>
                   <Form className="register-form" onSubmit={registerRoaster}>
-                    <Input name="name" placeholder="Business Name (dba)" type="text" onChange={roasterFormChange}/>
-                    <Input name="email" placeholder="Email" type="text" onChange={roasterFormChange}/>
-                    <Input name="password" placeholder="Password" type="password" onChange={roasterFormChange}/>
-                    <Input name="password_confirmation" placeholder="Confirm Password" type="password" onChange={roasterFormChange}/>
+                    <Input name="name" placeholder="Business Name (dba)" type="text" onChange={roasterFormChange} />
+                    <Input name="email" placeholder="Email" type="text" onChange={roasterFormChange} />
+                    <Input name="password" placeholder="Password" type="password" onChange={roasterFormChange} />
+                    <Input name="password_confirmation" placeholder="Confirm Password" type="password" onChange={roasterFormChange} />
                     <Button block className="btn-round" color="default">
                       Create roaster account
                     </Button>

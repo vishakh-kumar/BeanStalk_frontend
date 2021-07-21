@@ -21,7 +21,7 @@ export default function RoasterUpdate({ roaster }) {
             },
         }
         try {
-            await axios.put(`http://localhost:3001/roasters/${roaster.id}`, update, axiosConfig)
+            await axios.put(`https://beanstalk-api.herokuapp.com/roasters/${roaster.id}`, update, axiosConfig)
                 .then(res => console.log(res))
         } catch (e) {
             console.log(e)

@@ -17,14 +17,13 @@ export default function RoasterSignIn(props) {
         let axiosConfig = {
             headers: {
                 "Content-Type": "application/json;char=UTF-8",
-
                 "Access-Control-Allow-Origin": "https://beanstalk-api.herokuapp.com",
                 "withCredentials": "true"
             },
         };
         axios
             .post(
-                "http://localhost:3001/sessions",
+                "https://beanstalk-api.herokuapp.com/sessions",
                 {
                     roaster: {
                         email: signIn.email,

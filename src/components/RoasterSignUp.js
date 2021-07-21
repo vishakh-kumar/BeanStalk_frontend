@@ -20,7 +20,7 @@ const RoasterSignUp = function () {
 
     const checkLoginStatus = function () {
         axios
-            .get("http://localhost:3001/logged_in", { withCredentials: true })
+            .get("https://beanstalk-api.herokuapp.com/logged_in", { withCredentials: true })
             .then(response => {
                 console.log(response, response.data.logged_in)
                 if (response.data.logged_in) {

@@ -14,7 +14,7 @@ const PhotoUpload = ({urlString}) => {
         const form = new FormData();
         form.append("image", image);
 
-        await fetch(`http://localhost:3001/photos`, {
+        await fetch(`https://beanstalk-api.herokuapp.com/photos`, {
             header: {
                 "Content-Type": "application/json;char=UTF-8",
                 "Access-Control-Allow-Origin": "*",
