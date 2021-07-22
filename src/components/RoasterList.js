@@ -14,12 +14,12 @@ export default function RoasterList() {
         let axiosConfig = {
             headers: {
                 "Content-Type": "application/json;char=UTF-8",
-                "Access-Control-Allow-Origin": "https://beanstalk-api.herokuapp.com",
+                "Access-Control-Allow-Origin": `${process.env.REACT_APP_BACKEND_URL}`,
                 "withCredentials": "true"
             },
         };
         try {
-            axios.get('https://beanstalk-api.herokuapp.com/roasters', axiosConfig)
+            axios.get(`${process.env.REACT_APP_BACKEND_URL}/roasters`, axiosConfig)
                 .then(res => {
                     console.log(res)
                     setRoasterList(res.data.roaster)

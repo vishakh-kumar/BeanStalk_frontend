@@ -47,13 +47,13 @@ function SignIn(props) {
     let axiosConfig = {
       headers: {
         "Content-Type": "application/json;char=UTF-8",
-        "Access-Control-Allow-Origin": "https://beanstalk-api.herokuapp.com",
+        "Access-Control-Allow-Origin": `${process.env.REACT_APP_BACKEND_URL}`,
         "withCredentials": "true"
       },
     };
     axios
       .post(
-        "https://beanstalk-api.herokuapp.com/sessions",
+        `${process.env.REACT_APP_BACKEND_URL}/sessions`,
         {
           roaster: {
             email: signIn.email,
