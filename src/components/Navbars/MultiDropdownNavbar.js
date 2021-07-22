@@ -20,7 +20,7 @@ import {
 
 // core components
 
-function MultiDropdownNavbar() {
+function MultiDropdownNavbar(props) {
   const [navbarColor, setNavbarColor] = React.useState("navbar-transparent");
   const [bodyClick, setBodyClick] = React.useState(false);
   const [collapseOpen, setCollapseOpen] = React.useState(false);
@@ -32,15 +32,23 @@ function MultiDropdownNavbar() {
     // initialise
     headroom.init();
 
+    if (props.colorPointOverride === 0) {
+      setNavbarColor("bg-primary")
+    }
+
     const updateNavbarColor = () => {
+      let headerColorPoint = 301;
+      if (props.colorPointOverride < headerColorPoint) {
+        headerColorPoint = props.colorPointOverride;
+      }
       if (
         document.documentElement.scrollTop > 300 ||
         document.body.scrollTop > 300
       ) {
         setNavbarColor("bg-primary");
       } else if (
-        document.documentElement.scrollTop < 301 ||
-        document.body.scrollTop < 301
+        document.documentElement.scrollTop < headerColorPoint ||
+        document.body.scrollTop < headerColorPoint
       ) {
         setNavbarColor("navbar-transparent");
       }
@@ -49,7 +57,9 @@ function MultiDropdownNavbar() {
     return function cleanup() {
       window.removeEventListener("scroll", updateNavbarColor);
     };
-  });
+  }, []);
+
+
   return (
     <>
       {bodyClick ? (

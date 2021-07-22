@@ -20,7 +20,7 @@ const RoasterSignUp = function () {
 
     const checkLoginStatus = function () {
         axios
-            .get("https://beanstalk-api.herokuapp.com/logged_in", { withCredentials: true })
+            .get(`${process.env.REACT_APP_BACKEND_URL}/logged_in`, { withCredentials: true })
             .then(response => {
                 console.log(response, response.data.logged_in)
                 if (response.data.logged_in) {
@@ -37,7 +37,7 @@ const RoasterSignUp = function () {
         let axiosConfig = {
             headers: {
                 "Content-Type": "application/json;char=UTF-8",
-                "Access-Control-Allow-Origin": "https://beanstalk-api.herokuapp.com",
+                "Access-Control-Allow-Origin": `${process.env.REACT_APP_BACKEND_URL}`,
                 "withCredentials": "true"
             },
         };
@@ -70,13 +70,13 @@ const RoasterSignUp = function () {
         let axiosConfig = {
             headers: {
                 "Content-Type": "application/json;char=UTF-8",
-                "Access-Control-Allow-Origin": "https://beanstalk-api.herokuapp.com",
+                "Access-Control-Allow-Origin": `${process.env.REACT_APP_BACKEND_URL}`,
                 "withCredentials": "true"
             },
         };
         axios
             .delete(
-                "https://beanstalk-api.herokuapp.com/logout",
+                `${process.env.REACT_APP_BACKEND_URL}/logout`,
                 axiosConfig
             )
             .then((response) => {

@@ -54,7 +54,7 @@ function HomepageMain() {
                     color="danger"
                     onClick={(e) => {
                       e.preventDefault();
-                      history.push('/signin')
+                      history.push('/search')
                     }}
                   >
                     Get Started <i className="nc-icon nc-minimal-right" />
