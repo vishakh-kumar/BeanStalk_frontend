@@ -3,7 +3,7 @@ import { useState } from "react";
 import axios from "axios";
 
 const AddRoasts = ({ roaster_id }) => {
-    const URL = `http://localhost:3000/roasters/${roaster_id}/roasts`;
+    const URL = `${process.env.REACT_APP_BACKEND_URL}/roasters/${roaster_id}/roasts`;
     const [newForm, setNewForm] = useState({
         name: "",
         notes: "",

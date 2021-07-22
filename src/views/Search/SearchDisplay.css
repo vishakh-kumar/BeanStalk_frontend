@@ -1,0 +1,110 @@
+.search-title {
+    text-align: left;
+    font-weight: 700;
+}
+
+.trends {
+    text-align: left;
+    font-weight: 500;
+}
+
+.trending {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    overflow-y: hidden;
+    overflow-x: scroll;
+    width: 100%;
+    margin: 15px 0 0 0;
+}
+
+.trending::-webkit-scrollbar {
+    display: none;
+}
+
+.full-list {
+    margin: 60px 0 0 0;
+}
+
+.display-count {
+    font-size: 20px;
+    font-weight: 500;
+}
+
+.roaster-small {
+    padding: 0 15px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    width: fit-content;
+}
+
+.roaster-full {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    width: fit-content;
+    padding: 25px 0;
+}
+
+.roaster-small img {
+    height: 80px;
+    width: 120px;
+}
+
+.roaster-full img {
+    height: 160px;
+    width: 100%;
+    margin: 0 0 30px 0;
+}
+
+.infoline {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    flex-wrap: nowrap;
+    width: 100%;
+}
+
+.first-info, .second-info {
+    display: flex;
+    flex-direction: column;
+    width: 50%;
+}
+
+.roast-count {
+    font-weight: 500;
+    color: #505050;
+    margin: 0;
+}
+
+.roaster-site {
+    font-size: 12px;
+    font-weight: 500;
+}
+
+.name {
+    font-weight: 500;
+    text-align: left;
+    margin-top: -2px;
+    line-height: 12px;
+}
+
+.fullname {
+    font-size: 18px;
+    font-weight: 500;
+    margin: 0;
+}
+
+.rating {
+    padding: 4px 0 0 0;
+}
+
+.rating i {
+    padding: 0 4px 0 0;
+}
+
+.filled {
+    color: #531818;
+    content: "\ea2b";
+}
