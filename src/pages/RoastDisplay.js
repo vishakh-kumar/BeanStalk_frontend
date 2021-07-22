@@ -1,6 +1,5 @@
 import axios from "axios";
 import React from "react";
-import { Link } from "react-router-dom";
 import { useEffect, useState } from "react";
 import AddRoasts from "../components/AddRoasts";
 const RoastsDisplay = ({ roaster_id }) => {
@@ -8,12 +7,12 @@ const RoastsDisplay = ({ roaster_id }) => {
     useEffect(() => {
         getRoasts();
     }, [roaster_id]);
-    const URL = `http://localhost:3000/roasters/${roaster_id}/roasts`;
+    const URL = `${process.env.REACT_APP_BACKEND_URL}/roasters/${roaster_id}/roasts`;
     const getRoasts = async () => {
         let axiosConfig = {
             headers: {
                 "Content-Type": "application/json;char=UTF-8",
-                "Access-Control-Allow-Origin": `http://localhost:3000`,
+                "Access-Control-Allow-Origin": `${process.env.REACT_APP_BACKEND_URL}`,
                 withCredentials: "true",
             },
         };
