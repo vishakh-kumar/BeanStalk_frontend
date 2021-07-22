@@ -1,52 +1,61 @@
 import { useState } from "react";
 import axios from "axios";
 import PhotoUpload from "./PhotoUpload";
-
+import RoastsDisplay from "../pages/RoastDisplay";
 
 export default function RoasterUpdate({ roaster }) {
     const [update, setUpdate] = useState({
         email: "",
-        img_url: ""
+        img_url: "",
     });
 
-    console.log("is this the real life", roaster)
+    console.log("is this the real life", roaster);
 
     const handleUpdate = async () => {
         let axiosConfig = {
             headers: {
                 "Content-Type": "application/json;char=UTF-8",
                 "Access-Control-Allow-Origin": `${process.env.REACT_APP_BACKEND_URL}`,
-                "withCredentials": "true"
+                withCredentials: "true",
             },
-        }
+        };
         try {
-            await axios.put(`https://beanstalk-api.herokuapp.com/roasters/${roaster.id}`, update, axiosConfig)
-                .then(res => console.log(res))
+            await axios
+                .put(
+                    `https://beanstalk-api.herokuapp.com/roasters/${roaster.id}`,
+                    update,
+                    axiosConfig
+                )
+                .then((res) => console.log(res));
         } catch (e) {
-            console.log(e)
+            console.log(e);
         }
-    }
+    };
 
     const deleteRoaster = async () => {
         let axiosConfig = {
             headers: {
                 "Content-Type": "application/json;char=UTF-8",
                 "Access-Control-Allow-Origin": `${process.env.REACT_APP_BACKEND_URL}`,
-                "withCredentials": "true"
+                withCredentials: "true",
             },
         };
         try {
-            await axios.delete(`https://beanstalk-api.herokuapp.com/roasters/${roaster.id}`, axiosConfig)
-                .then(res => console.log(res))
+            await axios
+                .delete(
+                    `https://beanstalk-api.herokuapp.com/roasters/${roaster.id}`,
+                    axiosConfig
+                )
+                .then((res) => console.log(res));
         } catch (e) {
-            console.log(e)
+            console.log(e);
         }
-    }
+    };
 
     const handleUpdateChange = (event, name) => {
-        console.log(event, name)
+        console.log(event, name);
         setUpdate({ ...update, [name]: event.target.value });
-    }
+    };
 
     return (
         <div>
@@ -61,13 +70,13 @@ export default function RoasterUpdate({ roaster }) {
                     onChange={(e) => handleUpdateChange(e, "email")}
                     required
                 />
-
-
             </form>
-
-            <PhotoUpload urlString={(url) => setUpdate({ ...update, ["img_url"]: url })} />
+            <PhotoUpload
+                urlString={(url) => setUpdate({ ...update, ["img_url"]: url })}
+            />
             {update.image !== "" && <img src={update.image} />}
+            <RoastsDisplay roaster_id={roaster.id} />
             <button onClick={deleteRoaster}>Delete</button>
         </div>
-    )
+    );
 }
