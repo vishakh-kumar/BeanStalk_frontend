@@ -2,7 +2,6 @@ import React, { useEffect } from "react";
 import { useState } from "react";
 import axios from "axios";
 
-
 const RoasterSignUp = function () {
     const [form, setForm] = useState({
         name: "",
@@ -15,21 +14,22 @@ const RoasterSignUp = function () {
 
     useEffect(() => {
         checkLoginStatus();
-    }, [])
-
+    }, []);
 
     const checkLoginStatus = function () {
         axios
-            .get(`${process.env.REACT_APP_BACKEND_URL}/logged_in`, { withCredentials: true })
-            .then(response => {
-                console.log(response, response.data.logged_in)
+            .get(`${process.env.REACT_APP_BACKEND_URL}/logged_in`, {
+                withCredentials: true,
+            })
+            .then((response) => {
+                console.log(response, response.data.logged_in);
                 if (response.data.logged_in) {
-                    console.log(response.data.roaster.email)
+                    console.log(response.data.roaster.email);
                 }
             })
-            .catch(error => {
-                console.log("check login error", error)
-            })
+            .catch((error) => {
+                console.log("check login error", error);
+            });
     };
 
     const handleSubmit = function (event) {
@@ -38,12 +38,12 @@ const RoasterSignUp = function () {
             headers: {
                 "Content-Type": "application/json;char=UTF-8",
                 "Access-Control-Allow-Origin": `${process.env.REACT_APP_BACKEND_URL}`,
-                "withCredentials": "true"
+                withCredentials: "true",
             },
         };
         axios
             .post(
-                "http://localhost:3001/registrations",
+                `${process.env.REACT_APP_BACKEND_URL}/registrations`,
                 {
                     roaster: {
                         email: form.email || undefined,
@@ -71,21 +71,18 @@ const RoasterSignUp = function () {
             headers: {
                 "Content-Type": "application/json;char=UTF-8",
                 "Access-Control-Allow-Origin": `${process.env.REACT_APP_BACKEND_URL}`,
-                "withCredentials": "true"
+                withCredentials: "true",
             },
         };
         axios
-            .delete(
-                `${process.env.REACT_APP_BACKEND_URL}/logout`,
-                axiosConfig
-            )
+            .delete(`${process.env.REACT_APP_BACKEND_URL}/logout`, axiosConfig)
             .then((response) => {
                 console.log("registration res", response);
             })
             .catch((error) => {
                 console.log("registration error", error);
             });
-    }
+    };
 
     return (
         <div>
