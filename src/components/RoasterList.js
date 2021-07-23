@@ -1,7 +1,6 @@
 import { useEffect, useState } from "react";
 import RoasterUpdate from "./RoasterUpdate";
 import axios from "axios";
-import { Link } from "react-router-dom";
 
 export default function RoasterList() {
     const [roasterList, setRoasterList] = useState(null);
@@ -16,7 +15,7 @@ export default function RoasterList() {
             headers: {
                 "Content-Type": "application/json;char=UTF-8",
                 "Access-Control-Allow-Origin": `${process.env.REACT_APP_BACKEND_URL}`,
-                withCredentials: "true",
+                "withCredentials": "true",
             },
         };
         try {

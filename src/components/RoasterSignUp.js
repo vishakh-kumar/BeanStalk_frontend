@@ -1,6 +1,7 @@
 import React, { useEffect } from "react";
 import { useState } from "react";
 import axios from "axios";
+import axiosConfig from "../helpers/axiosConfig";
 
 const RoasterSignUp = function () {
     const [form, setForm] = useState({
@@ -34,13 +35,6 @@ const RoasterSignUp = function () {
 
     const handleSubmit = function (event) {
         event.preventDefault();
-        let axiosConfig = {
-            headers: {
-                "Content-Type": "application/json;char=UTF-8",
-                "Access-Control-Allow-Origin": `${process.env.REACT_APP_BACKEND_URL}`,
-                withCredentials: "true",
-            },
-        };
         axios
             .post(
                 `${process.env.REACT_APP_BACKEND_URL}/registrations`,
@@ -67,13 +61,6 @@ const RoasterSignUp = function () {
     };
 
     const handleLogout = () => {
-        let axiosConfig = {
-            headers: {
-                "Content-Type": "application/json;char=UTF-8",
-                "Access-Control-Allow-Origin": `${process.env.REACT_APP_BACKEND_URL}`,
-                withCredentials: "true",
-            },
-        };
         axios
             .delete(`${process.env.REACT_APP_BACKEND_URL}/logout`, axiosConfig)
             .then((response) => {

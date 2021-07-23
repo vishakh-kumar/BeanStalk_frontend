@@ -1,6 +1,8 @@
 import React from "react";
 import axios from "axios";
-import { useState } from "react";
+import axiosConfig from "../../helpers/axiosConfig";
+import { useState, useContext } from "react";
+import AuthenticationContext from "../../AuthenticationContext";
 import { useHistory } from "react-router";
 
 // reactstrap components
@@ -20,6 +22,7 @@ import MultiDropdownNavbar from "components/Navbars/MultiDropdownNavbar.js";
 
 function SignIn(props) {
   const history = useHistory();
+  const {updateAuthentication} = useContext(AuthenticationContext);
 
   document.documentElement.classList.remove("nav-open");
   React.useEffect(() => {
@@ -44,27 +47,26 @@ function SignIn(props) {
   };
 
   const handleSignIn = function () {
-    let axiosConfig = {
-      headers: {
-        "Content-Type": "application/json;char=UTF-8",
-        "Access-Control-Allow-Origin": `${process.env.REACT_APP_BACKEND_URL}`,
-        "withCredentials": "true"
-      },
-    };
     axios
       .post(
         `${process.env.REACT_APP_BACKEND_URL}/sessions`,
         {
-          roaster: {
+          account: {
             email: signIn.email,
             password: signIn.password,
           },
         },
         axiosConfig
       )
-      .then((response) => {
-        console.log("registration res", response);
-        props.signIn(response.data.roaster.email);
+      .then((res) => {
+        if (res.data.hasOwnProperty('roaster')) {
+          updateAuthentication(res.data.roaster);
+          history.push(`/roaster/${res.data.roaster.id}/settings`);
+        } else if (res.data.hasOwnProperty('user')) {
+          updateAuthentication(res.data.user);
+          history.push(`/search`)
+        }
+
       })
       .catch((error) => {
         console.log("registration error", error);
@@ -109,7 +111,7 @@ function SignIn(props) {
                     <span>Info</span>
                     <div className="line r" />
                   </div>
-                  <Form className="register-form">
+                  <Form className="register-form" onSubmit={handleSignIn}>
                     <Input
                       type="email"
                       name="email"

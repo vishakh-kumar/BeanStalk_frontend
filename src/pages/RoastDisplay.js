@@ -1,23 +1,17 @@
 import axios from "axios";
+import axiosConfig from "../helpers/axiosConfig";
 import React from "react";
 import { useEffect, useState } from "react";
 import AddRoasts from "../components/AddRoasts";
 const RoastsDisplay = ({ roaster_id }) => {
     const [roasts, setRoasts] = useState(null);
+
     useEffect(() => {
         getRoasts();
     }, [roaster_id]);
-    const URL = `${process.env.REACT_APP_BACKEND_URL}/roasters/${roaster_id}/roasts`;
     const getRoasts = async () => {
-        let axiosConfig = {
-            headers: {
-                "Content-Type": "application/json;char=UTF-8",
-                "Access-Control-Allow-Origin": `${process.env.REACT_APP_BACKEND_URL}`,
-                withCredentials: "true",
-            },
-        };
         try {
-            await axios.get(URL, axiosConfig).then((res) => {
+            await axios.get(process.env.REACT_APP_BACKEND_URL, axiosConfig).then((res) => {
                 console.log(res);
                 setRoasts(res.data.roast);
             });
