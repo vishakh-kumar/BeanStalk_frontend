@@ -1,6 +1,7 @@
 import React from "react";
-import { useState } from "react";
+import { useState, useContext } from "react";
 import { useHistory } from "react-router";
+import AuthenticationContext from "../../AuthenticationContext";
 
 // reactstrap components
 import {
@@ -15,10 +16,12 @@ import {
 } from "reactstrap";
 
 // core components
-import MultiDropdownNavbar from "../../components/Navbars/MultiDropdownNavbar";
 import axios from "axios";
+import axiosConfig from "../../helpers/axiosConfig";
+import WhiteNavbar from "../../components/Navbars/WhiteNavbar";
 
 function RegisterRoaster() {
+  const {updateAuthentication} = useContext(AuthenticationContext);
   const history = useHistory();
   const [roasterForm, setRoasterForm] = useState({
     name: "",
@@ -47,28 +50,23 @@ function RegisterRoaster() {
 
   const registerRoaster = function (event) {
     event.preventDefault();
-    let axiosConfig = {
-      headers: {
-        "Content-Type": "application/json;char=UTF-8",
-        "Access-Control-Allow-Origin": `${process.env.REACT_APP_BACKEND_URL}`,
-        "withCredentials": "true"
-      },
-    };
     axios
       .post(
         `${process.env.REACT_APP_BACKEND_URL}/registrations`,
         {
           roaster: {
-            email: roasterForm.email || undefined,
-            password: roasterForm.password || undefined,
+            name: roasterForm.name,
+            email: roasterForm.email,
+            password: roasterForm.password,
             password_confirmation:
-              roasterForm.password_confirmation || undefined,
+              roasterForm.password_confirmation,
           },
         },
         axiosConfig
       )
-      .then((response) => {
-        console.log("registration res", response);
+      .then((res) => {
+        updateAuthentication(res.data.roaster);
+        history.push(`/roaster/${res.data.roaster.id}/settings`);
       })
       .catch((error) => {
         console.log("registration error", error);
@@ -77,7 +75,7 @@ function RegisterRoaster() {
 
   return (
     <>
-      <MultiDropdownNavbar />
+      <WhiteNavbar />
       <div className="wrapper">
         <div
           className="page-header"

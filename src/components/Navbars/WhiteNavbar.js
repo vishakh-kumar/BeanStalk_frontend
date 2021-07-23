@@ -1,5 +1,9 @@
 import React from "react";
+import {useContext} from "react";
+import AuthenticationContext from "../../AuthenticationContext";
+import {useHistory} from "react-router";
 import { Link } from "react-router-dom";
+import {Redirect} from "react-router";
 // JavaScript plugin that hides or shows a component based on your scroll
 import Headroom from "headroom.js";
 // reactstrap components
@@ -17,16 +21,34 @@ import {
   Container,
   UncontrolledTooltip,
 } from "reactstrap";
+import axios from "axios";
+import axiosConfig from "../../helpers/axiosConfig";
 // core components
 
 function WhiteNavbar() {
+  const {signedInUser, updateAuthentication} = useContext(AuthenticationContext);
   const [bodyClick, setBodyClick] = React.useState(false);
   const [collapseOpen, setCollapseOpen] = React.useState(false);
+  const history = useHistory();
+
   React.useEffect(() => {
     let headroom = new Headroom(document.getElementById("navbar-main"));
     // initialise
     headroom.init();
   });
+
+  const logout = async () => {
+    axios
+        .delete(`${process.env.REACT_APP_BACKEND_URL}/logout`, axiosConfig)
+        .then((response) => {
+          updateAuthentication(null);
+          return <Redirect to='/' />
+        })
+        .catch((error) => {
+          console.log("registration error", error);
+        });
+  }
+
   return (
     <>
       {bodyClick ? (
@@ -42,12 +64,9 @@ function WhiteNavbar() {
       <Navbar className="fixed-top" expand="lg" id="navbar-main">
         <Container>
           <div className="navbar-translate">
-            <NavbarBrand id="navbar-brand" to="/index" tag={Link}>
-              Paper Kit PRO React
+            <NavbarBrand id="navbar-brand" tag={Link} onClick={() => history.push('/')}>
+              Beanstalk
             </NavbarBrand>
-            <UncontrolledTooltip placement="bottom" target="navbar-brand">
-              Paper Kit PRO React
-            </UncontrolledTooltip>
             <button
               className="navbar-toggler"
               id="navigation"
@@ -65,141 +84,52 @@ function WhiteNavbar() {
           </div>
           <Collapse navbar isOpen={collapseOpen}>
             <Nav className="ml-auto" navbar>
-              <UncontrolledDropdown nav inNavbar>
-                <DropdownToggle className="mr-2" color="default" caret nav>
-                  Components
-                </DropdownToggle>
-                <DropdownMenu className="dropdown-danger" right>
-                  <DropdownItem to="/index" tag={Link}>
-                    All Components
-                  </DropdownItem>
-                  <DropdownItem to="/presentation" tag={Link}>
-                    Presentation
-                  </DropdownItem>
-                  <DropdownItem
-                    href="https://demos.creative-tim.com/paper-kit-pro-react/#/documentation/introduction?ref=pkpr-white-navbar"
-                    target="_blank"
-                  >
-                    Documentation
-                  </DropdownItem>
-                </DropdownMenu>
-              </UncontrolledDropdown>
-              <UncontrolledDropdown nav inNavbar>
-                <DropdownToggle className="mr-2" color="default" caret nav>
-                  Sections
-                </DropdownToggle>
-                <DropdownMenu className="dropdown-danger" right>
-                  <DropdownItem to="/sections#headers" tag={Link}>
-                    <i className="nc-icon nc-tile-56" />
-                    Headers
-                  </DropdownItem>
-                  <DropdownItem to="/sections#features" tag={Link}>
-                    <i className="nc-icon nc-settings" />
-                    Features
-                  </DropdownItem>
-                  <DropdownItem to="/sections#blogs" tag={Link}>
-                    <i className="nc-icon nc-bullet-list-67" />
-                    Blogs
-                  </DropdownItem>
-                  <DropdownItem to="/sections#teams" tag={Link}>
-                    <i className="nc-icon nc-single-02" />
-                    Teams
-                  </DropdownItem>
-                  <DropdownItem to="/sections#projects" tag={Link}>
-                    <i className="nc-icon nc-calendar-60" />
-                    Projects
-                  </DropdownItem>
-                  <DropdownItem to="/sections#pricing" tag={Link}>
-                    <i className="nc-icon nc-money-coins" />
-                    Pricing
-                  </DropdownItem>
-                  <DropdownItem to="/sections#testimonials" tag={Link}>
-                    <i className="nc-icon nc-badge" />
-                    Testimonials
-                  </DropdownItem>
-                  <DropdownItem to="/sections#contact-us" tag={Link}>
-                    <i className="nc-icon nc-mobile" />
-                    Contact Us
-                  </DropdownItem>
-                </DropdownMenu>
-              </UncontrolledDropdown>
-              <UncontrolledDropdown nav inNavbar>
-                <DropdownToggle color="default" caret nav>
-                  Examples
-                </DropdownToggle>
-                <DropdownMenu className="dropdown-danger" right>
-                  <DropdownItem to="/about-us" tag={Link}>
-                    <i className="nc-icon nc-bank" />
-                    About-us
-                  </DropdownItem>
-                  <DropdownItem to="/add-product" tag={Link}>
-                    <i className="nc-icon nc-basket" />
-                    Add Product
-                  </DropdownItem>
-                  <DropdownItem to="/blog-post" tag={Link}>
-                    <i className="nc-icon nc-badge" />
-                    Blog Post
-                  </DropdownItem>
-                  <DropdownItem to="/blog-posts" tag={Link}>
-                    <i className="nc-icon nc-bullet-list-67" />
-                    Blog Posts
-                  </DropdownItem>
-                  <DropdownItem to="/contact-us" tag={Link}>
-                    <i className="nc-icon nc-mobile" />
-                    Contact Us
-                  </DropdownItem>
-                  <DropdownItem to="/discover" tag={Link}>
-                    <i className="nc-icon nc-world-2" />
-                    Discover
-                  </DropdownItem>
-                  <DropdownItem to="/e-commerce" tag={Link}>
-                    <i className="nc-icon nc-send" />
-                    Ecommerce
-                  </DropdownItem>
-                  <DropdownItem to="/landing-page" tag={Link}>
-                    <i className="nc-icon nc-spaceship" />
-                    Landing Page
-                  </DropdownItem>
-                  <DropdownItem to="/login-page" tag={Link}>
-                    <i className="nc-icon nc-lock-circle-open" />
-                    Login Page
-                  </DropdownItem>
-                  <DropdownItem to="/product-page" tag={Link}>
-                    <i className="nc-icon nc-album-2" />
-                    Product Page
-                  </DropdownItem>
-                  <DropdownItem to="/profile-page" tag={Link}>
-                    <i className="nc-icon nc-single-02" />
-                    Profile Page
-                  </DropdownItem>
-                  <DropdownItem to="/register-page" tag={Link}>
-                    <i className="nc-icon nc-bookmark-2" />
-                    Register Page
-                  </DropdownItem>
-                  <DropdownItem to="/search-with-sidebar" tag={Link}>
-                    <i className="nc-icon nc-zoom-split" />
-                    Search Page
-                  </DropdownItem>
-                  <DropdownItem to="/settings" tag={Link}>
-                    <i className="nc-icon nc-settings-gear-65" />
-                    Settings Page
-                  </DropdownItem>
-                  <DropdownItem to="/twitter-redesign" tag={Link}>
-                    <i className="nc-icon nc-tie-bow" />
-                    Twitter
-                  </DropdownItem>
-                </DropdownMenu>
-              </UncontrolledDropdown>
-              <NavItem>
-                <Button
-                  className="btn-round"
-                  color="danger"
-                  href="https://www.creative-tim.com/product/paper-kit-pro-react?ref=pkpr-white-navbar"
-                  target="_blank"
-                >
-                  <i className="nc-icon nc-cart-simple" /> Buy Now
-                </Button>
-              </NavItem>
+              {signedInUser ?
+                  <>
+                    <Button
+                        className="btn-round"
+                        color="link"
+                        onClick={(e) => e.preventDefault()}
+                    >
+                      {signedInUser.name}
+                    </Button>
+                    <Button
+                        className="btn-round"
+                        color="link"
+                        onClick={(e) => {
+                          e.preventDefault()
+                          logout();
+                        }}
+                    >
+                      Logout
+                    </Button>
+                  </>
+                   :
+                  <>
+                    <UncontrolledDropdown nav inNavbar>
+                      <DropdownToggle className="mr-2" color="default" caret nav>
+                        Sign Up
+                      </DropdownToggle>
+                      <DropdownMenu className="dropdown-danger" right>
+                        <DropdownItem to="/register/roaster" tag={Link}>
+                          For Roasters
+                        </DropdownItem>
+                        <DropdownItem to="/register/user" tag={Link}>
+                          For Coffee Drinkers
+                        </DropdownItem>
+                      </DropdownMenu>
+                    </UncontrolledDropdown>
+                    <NavItem>
+                      <Button
+                          className="btn-round btn-magnify"
+                          color="danger"
+                          href="/signin"
+                      >
+                        <i className="nc-icon nc-circle-10"/> Sign In
+                      </Button>
+                    </NavItem>
+                  </>
+              }
             </Nav>
           </Collapse>
         </Container>

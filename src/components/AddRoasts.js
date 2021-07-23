@@ -16,7 +16,7 @@ const AddRoasts = ({ roaster_id }) => {
             headers: {
                 "Content-Type": "application/json;char=UTF-8",
                 "Access-Control-Allow-Origin": `${URL}`,
-                withCredentials: "true",
+                "withCredentials": "true",
             },
         };
         axios

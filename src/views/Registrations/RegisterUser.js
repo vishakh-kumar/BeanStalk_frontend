@@ -1,6 +1,6 @@
-import React from "react";
-import {useState} from "react";
+import React, {useState, useContext} from "react";
 import {useHistory} from "react-router";
+import AuthenticationContext from "../../AuthenticationContext";
 
 // reactstrap components
 import {
@@ -15,15 +15,18 @@ import {
 } from "reactstrap";
 
 // core components
-import MultiDropdownNavbar from "../../components/Navbars/MultiDropdownNavbar";
+import WhiteNavbar from "../../components/Navbars/WhiteNavbar";
+import axios from "axios";
+import axiosConfig from "../../helpers/axiosConfig";
 
 function RegisterUser() {
   const history = useHistory();
+  const {updateAuthentication} = useContext(AuthenticationContext);
   const [userInfo, setUserInfo] = useState({
     name: "",
     email: "",
     password: "",
-    confirm: "",
+    password_confirmation: "",
   })
 
   document.documentElement.classList.remove("nav-open");
@@ -44,12 +47,32 @@ function RegisterUser() {
 
   const registerUser = (e) => {
     e.preventDefault();
-    console.log(userInfo);
+    axios
+        .post(
+            `${process.env.REACT_APP_BACKEND_URL}/registrations`,
+            {
+              user: {
+                name: userInfo.name,
+                email: userInfo.email,
+                password: userInfo.password,
+                password_confirmation:
+                    userInfo.password_confirmation,
+              },
+            },
+            axiosConfig
+        )
+        .then((res) => {
+          updateAuthentication(res.data.user)
+          history.push(`/search`);
+        })
+        .catch((error) => {
+          console.log("registration error", error);
+        });
   }
 
   return (
     <>
-      <MultiDropdownNavbar />
+      <WhiteNavbar />
       <div className="wrapper">
         <div
           className="page-header"
@@ -89,7 +112,7 @@ function RegisterUser() {
                     <Input placeholder="Name" type="text" onChange={(e) => userFormChange(e, "name")} />
                     <Input placeholder="Email" type="text" onChange={(e) => userFormChange(e, "email")} />
                     <Input placeholder="Password" type="password" onChange={(e) => userFormChange(e, "password")} />
-                    <Input placeholder="Confirm Password" type="password" onChange={(e) => userFormChange(e, "confirm")} />
+                    <Input placeholder="Confirm Password" type="password_confirmation" onChange={(e) => userFormChange(e, "password_confirmation")} />
                     <Button block className="btn-round" color="default">
                       Create account
                     </Button>

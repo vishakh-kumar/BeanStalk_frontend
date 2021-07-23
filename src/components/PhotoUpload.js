@@ -3,6 +3,8 @@ import { useState } from "react";
 
 const PhotoUpload = ({ urlString }) => {
     const [image, setImage] = useState(null);
+
+
     const onChange = (e) => {
         console.log(e);
         e.persist();
@@ -14,7 +16,7 @@ const PhotoUpload = ({ urlString }) => {
         const form = new FormData();
         form.append("image", image);
 
-        await fetch(`https://beanstalk-api.herokuapp.com/photos`, {
+        await fetch(`${process.env.REACT_APP_BACKEND_URL}/photos`, {
             header: {
                 "Content-Type": "application/json;char=UTF-8",
                 "Access-Control-Allow-Origin": `${process.env.REACT_APP_BACKEND_URL}`,
