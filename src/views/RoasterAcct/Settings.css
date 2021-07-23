@@ -1,0 +1,28 @@
+.settings-header {
+    height: 40vh;
+    background-color: #B2AFAB;
+    background-position: center center;
+    background-size: cover;
+    overflow: hidden;
+    position: relative;
+    width: 100%;
+    z-index: 1;
+}
+
+.greeter {
+    margin: 0;
+    font-weight: 500;
+}
+
+.image-box {
+    margin: 150px 0 0 0;
+}
+
+.active-image {
+    width: 90%;
+    margin: 20px auto;
+}
+
+.submit {
+    margin: 30px;
+}

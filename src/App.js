@@ -4,45 +4,47 @@ import {createBrowserHistory} from "history";
 import "./App.css";
 import Homepage from "./views/Homepage/Homepage";
 import SignIn from "./views/SignIn/SignIn";
-import RoasterSignUp from "./components/RoasterSignUp";
-import RoasterSignIn from "./components/RoasterSignIn";
 import SearchDisplay from "./views/Search/SearchDisplay";
 import RoasterDisplay from "./views/RoasterDisplay/RoasterDisplay";
-import RoasterList from "./components/RoasterList";
 import RegisterRoaster from "./views/Registrations/RegisterRoaster";
 import RegisterUser from "./views/Registrations/RegisterUser";
-import ScrollToTop from "./components/ScrollToTop";
+import RoasterAccountSettings from "./views/RoasterAcct/AccountSettings";
+import RoasterList from "./components/RoasterList";
+import RoasterUpdate from "./components/RoasterUpdate";
+import ScrollToTop from "./helpers/ScrollToTop";
+import AuthenticationContext from "./AuthenticationContext";
 
 
 function App() {
-    const [signedInRoaster, setSignedInRoaster] = useState(null);
+    const updateAuthentication = (signedInUser) => {
+        setAuthentication(prevState => ({...prevState, signedInUser: signedInUser}))
+    }
+
+    const initialAuthentication = {signedInUser: null, updateAuthentication: updateAuthentication};
+    const [authentication, setAuthentication] = useState(initialAuthentication);
+
     var hist = createBrowserHistory();
 
 
     return (
         <div className="App">
+            <AuthenticationContext.Provider value={authentication}>
             <Router history={hist}>
-                <ScrollToTop>
-                    <Switch>
-                        <Route path="/" exact component={Homepage} />
-                        <Route path="/signin" exact>
-                            <SignIn signIn={(roaster) => setSignedInRoaster(roaster)} />
-                        </Route>
-                        <Route path="/register/roaster" exact component={RegisterRoaster} />
-                        <Route path="/register/user" exact component={RegisterUser} />
-                        <Route path="/search" exact component={SearchDisplay} />
-                        <Route path="/roaster/:id">
-                            <RoasterDisplay />
-                        </Route>
-                    </Switch>
-                </ScrollToTop>
+                <Switch>
+                    <ScrollToTop>
+                            <Route exact path="/signin" component={SignIn} />
+                            <Route exact path="/register/roaster" component={RegisterRoaster} />
+                            <Route exact path="/register/user" component={RegisterUser} />
+                            <Route path="/roaster/:id" exact>
+                                <RoasterDisplay />
+                            </Route>
+                            <Route exact path="/search" component={SearchDisplay} />
+                            <Route exact path="/roaster/:id/settings" component={RoasterAccountSettings} />
+                            <Route exact path="/" component={Homepage} />
+                    </ScrollToTop>
+                </Switch>
             </Router>
-            <RoasterSignUp />
-            <RoasterSignIn signIn={(roaster) => setSignedInRoaster(roaster)} />
-            {signedInRoaster &&
-            <div>
-                {signedInRoaster} test
-            </div>}
+            </AuthenticationContext.Provider>
             <RoasterList />
         </div>
     );

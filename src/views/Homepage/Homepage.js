@@ -17,7 +17,7 @@ import {
 // core components
 import FooterBlack from "../../components/Footers/FooterBlack.js";
 import HomepageMain from "./HomepageMain";
-import MultiDropdownNavbar from "../../components/Navbars/MultiDropdownNavbar";
+import WhiteNavbar from "../../components/Navbars/WhiteNavbar";
 
 function LandingPage() {
   document.documentElement.classList.remove("nav-open");
@@ -31,7 +31,7 @@ function LandingPage() {
   });
   return (
     <>
-      <MultiDropdownNavbar />
+      <WhiteNavbar />
       <HomepageMain />
       <div className="wrapper">
         <div className="section text-center landing-section">
